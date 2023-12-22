@@ -30,11 +30,14 @@ namespace BulkyApp.Controllers
         public IActionResult Create(Category category)
         {
             if (ModelState.IsValid == false) {
+                TempData["Error"] = "Error creating category";
                 return View(category);
             }
 
             _DB.Categories.Add(category);
             _DB.SaveChanges();
+
+            TempData["Success"] = "Category created successfully";  
 
             return RedirectToAction("Index");
         }
@@ -57,11 +60,14 @@ namespace BulkyApp.Controllers
         public IActionResult Edit(Category category)
         {
             if (ModelState.IsValid == false) {
+                TempData["Error"] = "Error updating category";
                 return View(category);
             }
 
             _DB.Categories.Update(category);
             _DB.SaveChanges();
+
+            TempData["Success"] = "Category updated successfully";
 
             return RedirectToAction("Index");
         }
@@ -80,6 +86,8 @@ namespace BulkyApp.Controllers
 
             _DB.Categories.Remove(category);
             _DB.SaveChanges();
+
+            TempData["Success"] = "Category deleted successfully";
 
             return RedirectToAction("Index");
         }
