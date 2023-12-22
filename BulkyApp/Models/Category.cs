@@ -1,14 +1,21 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace BulkyApp.Models;
 
 public class Category
 {
-    [Key] // defining the primary keys
+    [Key]
     public int Id { get; set; }
-    [Required] // determine the column is required
 
-    public string Name { get; set; }
+    [Required]
+    [DisplayName("Category Name")]
+    [MaxLength(50)]
+    public string? Name { get; set; }
 
+    [Required]
+    [DisplayName("Display Order")]
+    [Range(1, 100)]
     public int DisplayOrder { get; set; }
 }
+
