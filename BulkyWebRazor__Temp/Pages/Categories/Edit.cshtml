@@ -1,0 +1,44 @@
+﻿@page
+@model BulkyWebRazor__Temp.Pages.Categories.EditModel
+
+@{
+    ViewData["Title"] = "Edit Category";
+}
+
+<div class="container">
+    <h1>Edit Category</h1>
+    <form asp-page="categories/edit" asp-route-id="Category.Id" method="post">
+        <input type="hidden" name="_method" value="put" />
+        <input type="hidden" asp-for="Category.Id" />
+        <div class="" asp-validation-summary="All"></div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Category.Name"></label>
+                    <input type="text" asp-for="Category.Name" class="form-control" placeholder="Insert the category name..." required />
+                    <span asp-validation-for="Category.Name"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Category.DisplayOrder"></label>
+                    <input type="number" asp-for="Category.DisplayOrder" class="form-control" placeholder="Insert the category name..." required />
+                    <span asp-validation-for="Category.DisplayOrder"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <button type="submit" class="btn w-full btn-primary">Save</button>
+            </div>
+            <div class="col-md-6">
+                <a asp-page="/categories/index"class="btn w-full btn-outline-secondary">Back</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
