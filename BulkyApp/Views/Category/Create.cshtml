@@ -3,38 +3,46 @@
     ViewData["Title"] = "Create Category";
 }
 
-@model Category
+@model BulkyApp.Models.Models.Category
 
 <div class="container">
-    <h1>Create Category</h1>
-    <form method="post">
-        <div class="" asp-validation-summary="All"></div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label asp-for="Name"></label>
-                    <input type="text" asp-for="Name" class="form-control" placeholder="Insert the category name..." required />
-                    <span asp-validation-for="Name"></span>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label asp-for="DisplayOrder"></label>
-                    <input type="number" asp-for="DisplayOrder" class="form-control" placeholder="Insert the category name..." required />
-                    <span asp-validation-for="DisplayOrder"></span>
-                </div>
-            </div>
+    <div class="card shadow">
+        <div class="card-header bg-primary bg-gradient text-white text-center">
+            <h1 class="card-title">
+                Create category
+            </h1>
         </div>
+        <div class="card-body">
+            <form method="post">
+                <div class="" asp-validation-summary="All"></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Name"></label>
+                            <input type="text" asp-for="Name" class="form-control" placeholder="Insert the category name..." required />
+                            <span asp-validation-for="Name"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="DisplayOrder"></label>
+                            <input type="number" asp-for="DisplayOrder" class="form-control" placeholder="Insert the category name..." required />
+                            <span asp-validation-for="DisplayOrder"></span>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="row mt-4">
-            <div class="col-md-6">
-                <button type="submit" class="btn w-full btn-primary">Save</button>
-            </div>
-            <div class="col-md-6">
-                <a asp-controller="Category" asp-action="Index" class="btn w-full btn-outline-secondary">Back</a>
-            </div>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn w-full btn-primary">Save</button>
+                    </div>
+                    <div class="col-md-6">
+                        <a asp-controller="Category" asp-action="Index" class="btn w-full btn-outline-secondary">Back</a>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 
 @section scripts{

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
-using BulkyApp.Data;
-using BulkyApp.Models;
+using BulkyApp.DataAccess.Data;
+using BulkyApp.Models.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
