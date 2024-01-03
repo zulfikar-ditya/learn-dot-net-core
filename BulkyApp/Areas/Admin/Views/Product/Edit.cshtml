@@ -1,0 +1,94 @@
+
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+@model BulkyApp.Models.Models.Product
+
+<div class="container">
+
+<div class="card">
+    <div class="card-header bg-primary bn-gradient text-white text-center">
+        <h1 class="card-title">Edit Product</h1>
+    </div>
+    <div class="card-body">
+        <form asp-controller="Product" asp-action="Edit" method="post">
+            <input type="hidden" name="_method" value="put" />
+            <input type="hidden" asp-for="Id" />
+            <div class="" asp-validation-summary="All"></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Title"></label>
+                            <input type="text" asp-for="Title" class="form-control" placeholder="Insert the category name..." required />
+                            <span asp-validation-for="Title"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Description"></label>
+                            <input type="text" asp-for="Description" class="form-control" placeholder="Insert the category name..." required />
+                            <span asp-validation-for="Description"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="ISBN"></label>
+                            <input type="text" asp-for="ISBN" class="form-control" placeholder="Insert the category name..." required />
+                            <span asp-validation-for="ISBN"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Author"></label>
+                            <input type="text" asp-for="Author" class="form-control" placeholder="Insert the category name..." required />
+                            <span asp-validation-for="Author"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="ListPrice"></label>
+                            <input type="number" asp-for="ListPrice" class="form-control" placeholder="Insert the category name..." required />
+                            <span asp-validation-for="ListPrice"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Price"></label>
+                            <input type="number" asp-for="Price" class="form-control" placeholder="Insert the category name..." required />
+                            <span asp-validation-for="Price"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Price50"></label>
+                            <input type="number" asp-for="Price50" class="form-control" placeholder="Insert the category name..." required />
+                            <span asp-validation-for="Price50"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Price100"></label>
+                            <input type="number" asp-for="Price100" class="form-control" placeholder="Insert the category name..." required />
+                            <span asp-validation-for="Price100"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn w-full btn-primary">Save</button>
+                    </div>
+                    <div class="col-md-6">
+                        <a asp-controller="Product" asp-action="Index" class="btn w-full btn-outline-secondary">Back</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -15,6 +15,7 @@ namespace BulkyApp.Binder
         public void bind()
         {
             _builder.Services.AddScoped<CategoryRepositoryInterface, CategoryRepository>();
+            _builder.Services.AddScoped<ProductRepositoryInterface, ProductRepository>();
         }
     }
 }

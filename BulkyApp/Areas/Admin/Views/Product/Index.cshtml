@@ -1,15 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "List Category";
+    ViewData["Title"] = "List Product";
 }
 
-@model List<BulkyApp.Models.Models.Category>
+@model List<BulkyApp.Models.Models.Product>
 
 <div class="container">
 
     <div class="card">
         <div class="card-header bg-primary bg-gradient text-white text-center text-white">
             <h1 class="card-title">
-                Category List
+                Product List
             </h1>
         </div>
         <div class="card-body">
@@ -17,7 +17,7 @@
                 <div class="col-md-6">
                 </div>
                 <div class="col-md-6 text-end">
-                    <a asp-area="Admin" asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                    <a asp-area="Admin" asp-controller="Product" asp-action="Create" class="btn btn-primary">
                         <i class="bi bi-plus-circle-fill mr-1"></i> Add
                     </a>
                 </div>
@@ -28,8 +28,14 @@
             <table class="table table-responsive table-stripped">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Order</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>ISBN</th>
+                        <th>Author</th>
+                        <th>List Price</th>
+                        <th>Price</th>
+                        <th>Price 50</th>
+                        <th>Price 100</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -37,14 +43,20 @@
                     @foreach (var obj in Model)
                     {
                         <tr>
-                            <td>@obj.Name</td>
-                            <td>@obj.DisplayOrder</td>
+                            <td>@obj.Title</td>
+                            <td>@obj.Description</td>
+                            <td>@obj.ISBN</td>
+                            <td>@obj.Author</td>
+                            <td>@obj.ListPrice</td>
+                            <td>@obj.Price</td>
+                            <td>@obj.Price50</td>
+                            <td>@obj.Price100</td>
                             <td>
                                 <div class="w-100 btn-group">
-                                    <a asp-area="" asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary">
+                                    <a asp-area="" asp-controller="Product" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary">
                                         <i class="bi bi-pencil-fill"></i>
                                     </a>
-                                    <form asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id" method="post">
+                                    <form asp-controller="Product" asp-action="Delete" asp-route-id="@obj.Id" method="post">
                                         <button class="btn btn-danger">
                                             <i class="bi bi-trash-fill"></i>
                                         </button>
