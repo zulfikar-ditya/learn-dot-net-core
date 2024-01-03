@@ -1,3 +1,4 @@
+using BulkyApp.Binder;
 using BulkyApp.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>
     (options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+RepositoryBinder repositoryBinder = new RepositoryBinder(builder);
+repositoryBinder.bind();
 
 var app = builder.Build();
 
@@ -27,6 +31,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Client}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
