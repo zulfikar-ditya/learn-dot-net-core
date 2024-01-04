@@ -29,13 +29,10 @@
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Description</th>
                         <th>ISBN</th>
                         <th>Author</th>
                         <th>List Price</th>
-                        <th>Price</th>
-                        <th>Price 50</th>
-                        <th>Price 100</th>
+                        <th>Category</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -44,13 +41,10 @@
                     {
                         <tr>
                             <td>@obj.Title</td>
-                            <td>@obj.Description</td>
                             <td>@obj.ISBN</td>
                             <td>@obj.Author</td>
                             <td>@obj.ListPrice</td>
-                            <td>@obj.Price</td>
-                            <td>@obj.Price50</td>
-                            <td>@obj.Price100</td>
+                            <td>@obj.Category?.Name</td>
                             <td>
                                 <div class="w-100 btn-group">
                                     <a asp-area="" asp-controller="Product" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary">

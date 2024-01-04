@@ -1,6 +1,8 @@
 using BulkyApp.DataAccess.Repository.Interfaces;
 using BulkyApp.Models.Models;
+using BulkyApp.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BulkyApp.Areas.Admin.Controllers
 {
@@ -9,9 +11,12 @@ namespace BulkyApp.Areas.Admin.Controllers
     {
         private readonly ProductRepositoryInterface productRepository;
 
-        public ProductController(ProductRepositoryInterface _productRepository)
+        private readonly CategoryRepositoryInterface categoryRepository;
+
+        public ProductController(ProductRepositoryInterface _productRepository, CategoryRepositoryInterface _categoryRepository)
         {
             productRepository = _productRepository;
+            categoryRepository = _categoryRepository;
         }
 
         public IActionResult Index()
@@ -21,13 +26,31 @@ namespace BulkyApp.Areas.Admin.Controllers
             return View(products);
         }
 
-        public IActionResult Create()
+        public IActionResult Create() 
         {
-            return View();
+            // IEnumerable<SelectListItem> CategorySelect = categoryRepository.GetAll().Select(c => new SelectListItem
+            // {
+            //     Text = c.Name,
+            //     Value = c.Id.ToString()
+            // });
+
+            // ViewBag.CategorySelect = CategorySelect;
+
+            ProductViewModel productViewModel = new ProductViewModel
+            {
+                Product = new Product(),
+                CategoryList = categoryRepository.GetAll().Select(c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.Id.ToString()
+                })
+            };
+
+            return View(productViewModel);
         }
 
         [HttpPost]
-        public IActionResult Create(Product product)
+        public IActionResult Create(ProductViewModel product)
         {
             if (ModelState.IsValid == false)
             {
@@ -35,7 +58,7 @@ namespace BulkyApp.Areas.Admin.Controllers
                 return View(product);
             }
 
-            productRepository.Create(product);
+            productRepository.Create(product.Product);
             productRepository.Save();
 
             TempData["Success"] = "Product created successfully";
@@ -56,11 +79,21 @@ namespace BulkyApp.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(product);
+            ProductViewModel productViewModel = new ProductViewModel
+            {
+                Product = product,
+                CategoryList = categoryRepository.GetAll().Select(c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.Id.ToString()
+                })
+            };
+
+            return View();
         }
 
         [HttpPost]
-        public IActionResult Edit(Product product)
+        public IActionResult Edit(ProductViewModel product)
         {
             if (ModelState.IsValid == false)
             {
@@ -68,7 +101,7 @@ namespace BulkyApp.Areas.Admin.Controllers
                 return View(product);
             }
 
-            productRepository.Update(product);
+            productRepository.Update(product.Product);
             productRepository.Save();
 
             TempData["Success"] = "Product updated successfully";
